@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FDE 课程统一入口</title>
+<style>
+  :root { --brand:#2563eb; --bg:#f6f7f9; --card:#fff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: linear-gradient(135deg,#1e3a8a,#2563eb); color:#fff; padding: 48px 24px; text-align: center; }
+  header h1 { font-size: 28px; letter-spacing: 2px; }
+  header p { margin-top: 8px; opacity: .85; font-size: 14px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 20px 64px; }
+  section { margin-bottom: 36px; }
+  h2 { font-size: 18px; margin-bottom: 14px; padding-left: 10px; border-left: 4px solid var(--brand); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 12px; }
+  a.card { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+           padding: 14px 16px; text-decoration: none; color: var(--text); transition: .15s; }
+  a.card:hover { border-color: var(--brand); box-shadow: 0 4px 14px rgba(37,99,235,.12); transform: translateY(-2px); }
+  a.card .t { font-weight: 600; font-size: 15px; }
+  a.card .d { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .badge { display:inline-block; font-size: 11px; color: var(--brand); background:#eff6ff; border-radius: 4px; padding: 1px 6px; margin-right: 6px; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 24px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FDE 课程中心</h1>
+  <p>clife-onto-engine / docs / tutorial / FDE课程 · 本地预览统一入口</p>
+</header>
+<main>
+
+<section>
+  <h2>📖 课程总览</h2>
+  <div class="grid">
+    <a class="card" href="00_八课总纲.html"><span class="t">00 · 八课总纲</span><div class="d">八节主课的整体结构与学习路径</div></a>
+    <a class="card" href="00_课程总纲.html"><span class="t">00 · 课程总纲</span><div class="d">课程体系总体说明</div></a>
+    <a class="card" href="00_授课流程手册.html"><span class="t">00 · 授课流程手册</span><div class="d">讲师授课流程与节奏安排</div></a>
+    <a class="card" href="FDE交付SOP速查卡.html"><span class="t">FDE 交付 SOP 速查卡</span><div class="d">交付标准流程快速查阅</div></a>
+    <a class="card" href="案例矩阵_跨项目对照.html"><span class="t">案例矩阵 · 跨项目对照</span><div class="d">不同项目案例横向对比</div></a>
+  </div>
+</section>
+
+<section>
+  <h2>🎓 正式课程（L1–L8 主课 + S1–S3 专题）</h2>
+  <div class="grid">
+    <a class="card" href="课程/L1_FDE总论.html"><span class="t"><span class="badge">L1</span>FDE 总论</span></a>
+    <a class="card" href="课程/L2_项目与工具.html"><span class="t"><span class="badge">L2</span>项目与工具</span></a>
+    <a class="card" href="课程/L3_如何正确采集信息.html"><span class="t"><span class="badge">L3</span>如何正确采集信息</span></a>
+    <a class="card" href="课程/L4_认知萃取与领域建模.html"><span class="t"><span class="badge">L4</span>认知萃取与领域建模</span></a>
+    <a class="card" href="课程/L5_本体建模与设闸.html"><span class="t"><span class="badge">L5</span>本体建模与设闸</span></a>
+    <a class="card" href="课程/L6_文档工程.html"><span class="t"><span class="badge">L6</span>文档工程</span></a>
+    <a class="card" href="课程/L7_原型开发.html"><span class="t"><span class="badge">L7</span>原型开发</span></a>
+    <a class="card" href="课程/L8_总结与能力沉淀.html"><span class="t"><span class="badge">L8</span>总结与能力沉淀</span></a>
+    <a class="card" href="课程/S1_本体论.html"><span class="t"><span class="badge">S1</span>本体论</span></a>
+    <a class="card" href="课程/S2_本体引擎的工程实现.html"><span class="t"><span class="badge">S2</span>本体引擎的工程实现</span></a>
+    <a class="card" href="课程/S3_建模端如何支撑引擎.html"><span class="t"><span class="badge">S3</span>建模端如何支撑引擎</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>🖥️ 课件放映（Slides）</h2>
+  <div class="grid">
+    <a class="card" href="slides/index.html"><span class="t">▶ 课件总索引（Slides Index）</span><div class="d">官方放映入口，含全部幻灯片</div></a>
+    <a class="card" href="slides/L1_FDE总论.html"><span class="t"><span class="badge">L1</span>FDE 总论</span></a>
+    <a class="card" href="slides/L2_项目与工具.html"><span class="t"><span class="badge">L2</span>项目与工具</span></a>
+    <a class="card" href="slides/L3_采集信息.html"><span class="t"><span class="badge">L3</span>采集信息</span></a>
+    <a class="card" href="slides/L4_萃取与建模.html"><span class="t"><span class="badge">L4</span>萃取与建模</span></a>
+    <a class="card" href="slides/L5_本体与设闸.html"><span class="t"><span class="badge">L5</span>本体与设闸</span></a>
+    <a class="card" href="slides/L6_文档工程.html"><span class="t"><span class="badge">L6</span>文档工程</span></a>
+    <a class="card" href="slides/L7_原型开发.html"><span class="t"><span class="badge">L7</span>原型开发</span></a>
+    <a class="card" href="slides/L8_能力沉淀.html"><span class="t"><span class="badge">L8</span>能力沉淀</span></a>
+    <a class="card" href="slides/S1_本体论.html"><span class="t"><span class="badge">S1</span>本体论</span></a>
+    <a class="card" href="slides/S2_本体引擎.html"><span class="t"><span class="badge">S2</span>本体引擎</span></a>
+    <a class="card" href="slides/S3_建模端与引擎.html"><span class="t"><span class="badge">S3</span>建模端与引擎</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>📝 配套讲义（10 讲）</h2>
+  <div class="grid">
+    <a class="card" href="讲义/01_FDE是什么.html"><span class="t">01 · FDE 是什么</span></a>
+    <a class="card" href="讲义/02_大模型时代FDE交付vs传统交付.html"><span class="t">02 · 大模型时代 FDE 交付 vs 传统交付</span></a>
+    <a class="card" href="讲义/03_FDE是企业级OPC一人公司.html"><span class="t">03 · FDE 是企业级 OPC 一人公司</span></a>
+    <a class="card" href="讲义/04_知识背景栈.html"><span class="t">04 · 知识背景栈</span></a>
+    <a class="card" href="讲义/05_为什么FDE依赖成熟工程化平台.html"><span class="t">05 · 为什么 FDE 依赖成熟工程化平台</span></a>
+    <a class="card" href="讲义/06_FDE交付怎么做_康养项目全流程复盘.html"><span class="t">06 · FDE 交付怎么做：康养项目全流程复盘</span></a>
+    <a class="card" href="讲义/07_工具体系打通认知到行动.html"><span class="t">07 · 工具体系：打通认知到行动</span></a>
+    <a class="card" href="讲义/08_什么样的人能成为FDE.html"><span class="t">08 · 什么样的人能成为 FDE</span></a>
+    <a class="card" href="讲义/09_别人家怎么落地FDE.html"><span class="t">09 · 别人家怎么落地 FDE</span></a>
+    <a class="card" href="讲义/10_C-Life怎么做.html"><span class="t">10 · C-Life 怎么做</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>🛠️ 工作坊（Workshop 01–10）</h2>
+  <div class="grid">
+    <a class="card" href="工作坊/01_FDE是什么_workshop.html"><span class="t">01 · FDE 是什么</span></a>
+    <a class="card" href="工作坊/02_大模型时代FDE交付vs传统交付_workshop.html"><span class="t">02 · FDE 交付 vs 传统交付</span></a>
+    <a class="card" href="工作坊/03_FDE是企业级OPC一人公司_workshop.html"><span class="t">03 · 企业级 OPC 一人公司</span></a>
+    <a class="card" href="工作坊/04_知识背景栈_workshop.html"><span class="t">04 · 知识背景栈</span></a>
+    <a class="card" href="工作坊/05_为什么FDE依赖成熟工程化平台_workshop.html"><span class="t">05 · 成熟工程化平台</span></a>
+    <a class="card" href="工作坊/06_FDE交付怎么做_康养项目全流程复盘_workshop.html"><span class="t">06 · 康养项目全流程复盘</span></a>
+    <a class="card" href="工作坊/07_工具体系打通认知到行动_workshop.html"><span class="t">07 · 工具体系</span></a>
+    <a class="card" href="工作坊/08_什么样的人能成为FDE_workshop.html"><span class="t">08 · 谁能成为 FDE</span></a>
+    <a class="card" href="工作坊/09_别人家怎么落地FDE_workshop.html"><span class="t">09 · 别人家怎么落地</span></a>
+    <a class="card" href="工作坊/10_C-Life怎么做_workshop.html"><span class="t">10 · C-Life 怎么做</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>⚙️ 工具实操（T1–T9）</h2>
+  <div class="grid">
+    <a class="card" href="工具实操/T1_信息获取.html"><span class="t"><span class="badge">T1</span>信息获取</span></a>
+    <a class="card" href="工具实操/T2_环境准备.html"><span class="t"><span class="badge">T2</span>环境准备</span></a>
+    <a class="card" href="工具实操/T3_认知萃取.html"><span class="t"><span class="badge">T3</span>认知萃取</span></a>
+    <a class="card" href="工具实操/T4_领域建模.html"><span class="t"><span class="badge">T4</span>领域建模</span></a>
+    <a class="card" href="工具实操/T5a_本体建模.html"><span class="t"><span class="badge">T5a</span>本体建模</span></a>
+    <a class="card" href="工具实操/T5b_设闸与治理.html"><span class="t"><span class="badge">T5b</span>设闸与治理</span></a>
+    <a class="card" href="工具实操/T6_文档工程.html"><span class="t"><span class="badge">T6</span>文档工程</span></a>
+    <a class="card" href="工具实操/T7_界面原型.html"><span class="t"><span class="badge">T7</span>界面原型</span></a>
+    <a class="card" href="工具实操/T8_技能插件开发.html"><span class="t"><span class="badge">T8</span>技能插件开发</span></a>
+    <a class="card" href="工具实操/T9_结课路演.html"><span class="t"><span class="badge">T9</span>结课路演</span></a>
+  </div>
+</section>
+
+</main>
+<footer>来源：github.com/Ameng2001/clife-onto-engine · docs/tutorial/FDE课程 · 仅供内部学习预览</footer>
+</body>
+</html>
