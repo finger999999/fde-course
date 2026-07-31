@@ -147,6 +147,34 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+
+<style id="fde-wide-layout-patch">
+/* 宽屏排版补丁：充分利用屏幕宽度 */
+@media (min-width: 1100px) {
+  html { font-size: 19px; }
+  body { max-width: 56em; padding-top: 32px; }
+}
+@media (min-width: 1500px) {
+  body { margin-left: max(360px, calc(50% - 28em)); margin-right: auto; }
+  #fde-toc { display: block; }
+}
+#fde-toc {
+  display: none; position: fixed; left: 24px; top: 32px; width: 300px;
+  max-height: calc(100vh - 64px); overflow: auto;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: 14px; line-height: 1.55;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 14px 18px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+#fde-toc .toc-title { font-weight: 700; color: #111827; margin-bottom: 8px; }
+#fde-toc a { display: block; color: #374151; text-decoration: none; padding: 2px 0; }
+#fde-toc a:hover { color: #2563eb; }
+#fde-toc a.active { color: #2563eb; font-weight: 600; }
+#fde-toc .toc-h1 { font-weight: 700; }
+#fde-toc .toc-h2 { margin-left: 10px; }
+#fde-toc .toc-h3 { margin-left: 24px; color: #6b7280; font-size: 13px; }
+#fde-toc .toc-back { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e5e7eb; }
+</style>
 </head>
 <body>
 <header id="title-block-header">
@@ -422,5 +450,37 @@
 <p><strong>必须点破的三个常见错误</strong>： - <strong>只算打字工时</strong>：最典型的失分。要追问“3835 行是机械生成的，手写才是问题；但手写更大的问题是 76 个对象命名跨 7 域保持一致——这是 B-5（数据张冠李戴）的放大版”。 - <strong>错误率给太低</strong>：谁写“我很仔细所以错误率 1%”，直接用 B-8 反问：“训练有素的 FDE 在有校验器兜底的情况下，编译期还<strong>多次</strong>想越域写入。没有校验器兜底，你凭什么相信自己 99% 不越界？” - <strong>漏掉发现成本曲线</strong>：手工模式的致命点不是“会错”，是“错误发现得晚”。B-8 在平台里编译期发现（便宜），手工里可能对账期才发现（昂贵，且要追责、复现）。</p>
 <p><strong>收口给标准答案骨架（三句结论范例）</strong>： 1. 平台替我们承担了 <strong>7 域跨 76 对象/75 链接的一致性维护与越界防护</strong> 风险（B-8 靠校验器而非自觉挡住）； 2. 代价是 <strong>平台建设 + 学习 + 管线维护</strong> 的一次性与持续投入； 3. <strong>值</strong>，因为一致性维护是人类最易疲劳出错、且错误发现越晚越贵的环节，把它固化进校验器，等于把“复制加班”变成“复制能力”——<strong>没有平台，你复制不了康养项目的 7/7，只能复制那个人的加班。</strong></p>
 <p><strong>与 B-9 的联动提醒</strong>：若有学员在 ⑤ SDK 能力核实里写“假设 SDK 都支持”，当场纠正——这正是 B-9 的错误姿势。正解是“不确定就显式挂账（docstring），把存疑留成白纸黑字，而不是’应该支持吧’往前推”，与第 3 讲“错文号比空缺更有害”同一条纪律。</p>
+
+<script>
+(function () {
+  var heads = document.querySelectorAll("h1, h2[id], h3[id]");
+  heads = document.querySelectorAll("h1, h2, h3");
+  if (heads.length < 3) return;
+  var nav = document.createElement("nav");
+  nav.id = "fde-toc";
+  var html = '<div class="toc-title">本页目录</div>';
+  var links = [];
+  heads.forEach(function (h, i) {
+    if (!h.id) h.id = "fde-sec-" + i;
+    var cls = "toc-" + h.tagName.toLowerCase();
+    html += '<a class="' + cls + '" href="#' + h.id + '">' + h.textContent + "</a>";
+    links.push({ a: null, h: h });
+  });
+  html += '<div class="toc-back"><a href="../index.html">← 返回课程中心</a></div>';
+  nav.innerHTML = html;
+  document.body.appendChild(nav);
+  var as = nav.querySelectorAll("a[href^='#']");
+  as.forEach(function (a, i) { links[i].a = a; });
+  function onScroll() {
+    var cur = 0;
+    links.forEach(function (l, i) {
+      if (l.h.getBoundingClientRect().top < 120) cur = i;
+    });
+    links.forEach(function (l, i) { l.a.classList.toggle("active", i === cur); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

@@ -147,6 +147,34 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+
+<style id="fde-wide-layout-patch">
+/* 宽屏排版补丁：充分利用屏幕宽度 */
+@media (min-width: 1100px) {
+  html { font-size: 19px; }
+  body { max-width: 56em; padding-top: 32px; }
+}
+@media (min-width: 1500px) {
+  body { margin-left: max(360px, calc(50% - 28em)); margin-right: auto; }
+  #fde-toc { display: block; }
+}
+#fde-toc {
+  display: none; position: fixed; left: 24px; top: 32px; width: 300px;
+  max-height: calc(100vh - 64px); overflow: auto;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: 14px; line-height: 1.55;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 14px 18px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+#fde-toc .toc-title { font-weight: 700; color: #111827; margin-bottom: 8px; }
+#fde-toc a { display: block; color: #374151; text-decoration: none; padding: 2px 0; }
+#fde-toc a:hover { color: #2563eb; }
+#fde-toc a.active { color: #2563eb; font-weight: 600; }
+#fde-toc .toc-h1 { font-weight: 700; }
+#fde-toc .toc-h2 { margin-left: 10px; }
+#fde-toc .toc-h3 { margin-left: 24px; color: #6b7280; font-size: 13px; }
+#fde-toc .toc-back { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e5e7eb; }
+</style>
 </head>
 <body>
 <header id="title-block-header">
@@ -439,5 +467,37 @@
 <p><strong>一条标准贯通链示范（供对照，学员不必完全一致）</strong>： - 接口 0：<code>E45 长者助餐到店</code>，入口 = 助餐。 - 接口 1：触发 <code>D2 转化or流失</code>（判断这位长者是转会员还是仅体验流失）+ <code>D4 交叉推荐命中</code>（助餐画像 → 推中医理疗）。二者是 skill 边界，因为一个管“转化判定”、一个管“交叉推荐引擎”，逻辑与数据源不同，切成两个 skill 可独立演进。 - 接口 2：Object = <code>MembershipTrialVisit</code>（属性：elder_id ref→D4、entry=助餐、trial_date）；Action = <code>convert_to_member</code>（转化成功→<strong>发布</strong> ServiceOrder 给 D3、结算<strong>ref→D2</strong>、画像<strong>ref→D4</strong>，绝不 stage_write D2/D4 对象）；Rule = <code>分层定价双档</code>（≤200 走量 / 500–1500 溢价，按片区画像动态，挂三元支付口径）。 - 接口 3：正文须出现“三条营收线咬合（理疗+助餐+商城器械）”“三元支付：自费为主、仅助餐挂政府购买补贴”“分层定价双档”至少一项作为数字锚。 - 接口 4：<code>![图7-1 会员飞轮三入口转化](../figures/fig-7-1-飞轮转化.png)</code>，图清单登记 slug 与之逐字一致。</p>
 <p><strong>必须抓的三类现场错误</strong>： - <strong>越域写（撞 B-8）</strong>：学员图省事让 <code>convert_to_member</code> 直接写 D2 结算对象或 D4 画像对象。当场用第 5 讲 B-8 纠正：“跨域一律 ref/发布，画像 canonical 在 D4 不分裂、结算汇 D2，你越写就制造了悬空/越界，7/7 零悬空就是这么守出来的。” - <strong>slug 断裂（撞 B-3）</strong>：正文占位写 <code>fig-7-1-飞轮转化</code>，图清单登记写成 <code>fig7-1-飞轮</code> 或事后改了图名。当场演示：“真实导出这里就静默丢图，docx 照样生成、管线全绿，客户翻到这页才发现——这就是 B-3。占位符即契约，slug 先定后画。” - <strong>空洞无证据（撞证据密度红线）</strong>：正文写“通过精细化运营提升转化”这类没有康养项目数字的空话，判 D4 低分。要求每个论断挂一个口径（三元支付/分层定价/368 份问卷校准出的付费意愿等）。</p>
 <p><strong>两条质检线的标准清单（发给学员当模板）</strong>： - 内容质检线（部分可被校验器覆盖）：数字锚单点不自造（防 B-5）、跨域 ref 不越写（防 B-8，quality 结构校验能抓）、引用 citations 挂对（能核）。 - 格式质检线（<strong>校验器守不住，只能 FDE 亲走</strong>）：占位 slug 与文件名一致（防 B-3）、导出后逐张验图不丢、Word 主题色不覆盖浅色配图（防 B-4）、排版/字体对齐客户模板。 - 收口一句：<strong>“内容质检有校验器帮你一半，格式质检一个字都没人帮你——26 张图你得亲眼看 26 遍。这就是为什么 FDE 是层间接口的唯一负责人。”</strong></p>
+
+<script>
+(function () {
+  var heads = document.querySelectorAll("h1, h2[id], h3[id]");
+  heads = document.querySelectorAll("h1, h2, h3");
+  if (heads.length < 3) return;
+  var nav = document.createElement("nav");
+  nav.id = "fde-toc";
+  var html = '<div class="toc-title">本页目录</div>';
+  var links = [];
+  heads.forEach(function (h, i) {
+    if (!h.id) h.id = "fde-sec-" + i;
+    var cls = "toc-" + h.tagName.toLowerCase();
+    html += '<a class="' + cls + '" href="#' + h.id + '">' + h.textContent + "</a>";
+    links.push({ a: null, h: h });
+  });
+  html += '<div class="toc-back"><a href="../index.html">← 返回课程中心</a></div>';
+  nav.innerHTML = html;
+  document.body.appendChild(nav);
+  var as = nav.querySelectorAll("a[href^='#']");
+  as.forEach(function (a, i) { links[i].a = a; });
+  function onScroll() {
+    var cur = 0;
+    links.forEach(function (l, i) {
+      if (l.h.getBoundingClientRect().top < 120) cur = i;
+    });
+    links.forEach(function (l, i) { l.a.classList.toggle("active", i === cur); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

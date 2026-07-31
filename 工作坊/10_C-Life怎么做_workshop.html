@@ -147,6 +147,34 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+
+<style id="fde-wide-layout-patch">
+/* 宽屏排版补丁：充分利用屏幕宽度 */
+@media (min-width: 1100px) {
+  html { font-size: 19px; }
+  body { max-width: 56em; padding-top: 32px; }
+}
+@media (min-width: 1500px) {
+  body { margin-left: max(360px, calc(50% - 28em)); margin-right: auto; }
+  #fde-toc { display: block; }
+}
+#fde-toc {
+  display: none; position: fixed; left: 24px; top: 32px; width: 300px;
+  max-height: calc(100vh - 64px); overflow: auto;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: 14px; line-height: 1.55;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 14px 18px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+#fde-toc .toc-title { font-weight: 700; color: #111827; margin-bottom: 8px; }
+#fde-toc a { display: block; color: #374151; text-decoration: none; padding: 2px 0; }
+#fde-toc a:hover { color: #2563eb; }
+#fde-toc a.active { color: #2563eb; font-weight: 600; }
+#fde-toc .toc-h1 { font-weight: 700; }
+#fde-toc .toc-h2 { margin-left: 10px; }
+#fde-toc .toc-h3 { margin-left: 24px; color: #6b7280; font-size: 13px; }
+#fde-toc .toc-back { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e5e7eb; }
+</style>
 </head>
 <body>
 <header id="title-block-header">
@@ -428,5 +456,37 @@
 <p><strong>三研讨题标准落点</strong>： 1. 卡点多在“人”——因 C7 只能筛（第 8 讲），呼应 M1 必须“到人头签字”。 2. 最难达标多为指标三 HIL 覆盖率——C3 是三类传统角色护城河缺口。 3. 顶回去用红线一（不许跳度量铺量）+ “你没有第二个 C7 过关的 L3”这个事实（康养项目只证明“一个 L3 做成一个项目”，未证明“一个 L3 做三个”）。</p>
 <p><strong>与康养项目证据的强绑定检查</strong>：凡行动项声称“对标已交付版/过结构校验/覆盖 7 域”，批改时确认其锚定的是康养项目真实产物（7/7 零悬空、26 HIL 点、18 挂国标、35 节并行装配），而非泛泛而谈。空洞对标按不合格处理（D1 降档）。</p>
 <p><strong>收口话术</strong>：“这就是十讲的终点。康养项目证明了’能做成’——102 事件到 7 域到 11 章可研，1 个 FDE 带编队跑通；但它’不可复制，因为方法在一个人脑子里’（总纲原话）。你们今天拼出的这份 90 天计划，就是把’一个人脑子里的方法’搬进’组织’的第一张施工图。下周一，按 M1 去签第一个人头。不要愿景，要人头和日期。”</p>
+
+<script>
+(function () {
+  var heads = document.querySelectorAll("h1, h2[id], h3[id]");
+  heads = document.querySelectorAll("h1, h2, h3");
+  if (heads.length < 3) return;
+  var nav = document.createElement("nav");
+  nav.id = "fde-toc";
+  var html = '<div class="toc-title">本页目录</div>';
+  var links = [];
+  heads.forEach(function (h, i) {
+    if (!h.id) h.id = "fde-sec-" + i;
+    var cls = "toc-" + h.tagName.toLowerCase();
+    html += '<a class="' + cls + '" href="#' + h.id + '">' + h.textContent + "</a>";
+    links.push({ a: null, h: h });
+  });
+  html += '<div class="toc-back"><a href="../index.html">← 返回课程中心</a></div>';
+  nav.innerHTML = html;
+  document.body.appendChild(nav);
+  var as = nav.querySelectorAll("a[href^='#']");
+  as.forEach(function (a, i) { links[i].a = a; });
+  function onScroll() {
+    var cur = 0;
+    links.forEach(function (l, i) {
+      if (l.h.getBoundingClientRect().top < 120) cur = i;
+    });
+    links.forEach(function (l, i) { l.a.classList.toggle("active", i === cur); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>

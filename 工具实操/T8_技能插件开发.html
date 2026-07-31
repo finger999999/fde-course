@@ -147,6 +147,34 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+
+<style id="fde-wide-layout-patch">
+/* 宽屏排版补丁：充分利用屏幕宽度 */
+@media (min-width: 1100px) {
+  html { font-size: 19px; }
+  body { max-width: 56em; padding-top: 32px; }
+}
+@media (min-width: 1500px) {
+  body { margin-left: max(360px, calc(50% - 28em)); margin-right: auto; }
+  #fde-toc { display: block; }
+}
+#fde-toc {
+  display: none; position: fixed; left: 24px; top: 32px; width: 300px;
+  max-height: calc(100vh - 64px); overflow: auto;
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: 14px; line-height: 1.55;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  padding: 14px 18px; box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+#fde-toc .toc-title { font-weight: 700; color: #111827; margin-bottom: 8px; }
+#fde-toc a { display: block; color: #374151; text-decoration: none; padding: 2px 0; }
+#fde-toc a:hover { color: #2563eb; }
+#fde-toc a.active { color: #2563eb; font-weight: 600; }
+#fde-toc .toc-h1 { font-weight: 700; }
+#fde-toc .toc-h2 { margin-left: 10px; }
+#fde-toc .toc-h3 { margin-left: 24px; color: #6b7280; font-size: 13px; }
+#fde-toc .toc-back { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e5e7eb; }
+</style>
 </head>
 <body>
 <header id="title-block-header">
@@ -835,5 +863,37 @@
 <p>两种模式的团队编成根本不同——<strong>模式一（Token-SaaS，如教育督导项目）编成轻</strong>：1 个 FDE + 平台/运行时组，快跑快迭代；<strong>模式二（大平台建设运营，如康养项目/草业项目/辣椒）编成重</strong>：1 个主理 FDE（L3）+ N 个见习 + 平台组，而且要扛得起可研、财务测算、监管合规——商业和合规的能力半径要宽得多。你擅长哪种模式，直接决定你能主理哪种项目。</p>
 <p>而真正的分水岭是 <strong>C1 认知萃取的跨行业迁移力</strong>：教育督导项目能用和康养项目同一套管线做出来，证明<strong>方法能迁移</strong>；但你能不能在一个<strong>你不熟的行业</strong>（学前督导、辣椒育种、草原修复）里，快速把模糊意图压成可归域的结构？康养你可能靠沉淀蒙对了，换个行业沉淀归零、<strong>只剩方法</strong>——这就是 L2 和 L3 的分界。</p>
 <p>最后一句诚实话：辣椒/草业项目目前只到方案、草业项目 demo 还是 Mock，所以我讲它们只敢讲’定位与结构’，不敢讲交付实测——<strong>知道自己在哪个模式、哪个行业、哪个阶段还没有发言权，本身就是能力半径的一部分。</strong>"</p>
+
+<script>
+(function () {
+  var heads = document.querySelectorAll("h1, h2[id], h3[id]");
+  heads = document.querySelectorAll("h1, h2, h3");
+  if (heads.length < 3) return;
+  var nav = document.createElement("nav");
+  nav.id = "fde-toc";
+  var html = '<div class="toc-title">本页目录</div>';
+  var links = [];
+  heads.forEach(function (h, i) {
+    if (!h.id) h.id = "fde-sec-" + i;
+    var cls = "toc-" + h.tagName.toLowerCase();
+    html += '<a class="' + cls + '" href="#' + h.id + '">' + h.textContent + "</a>";
+    links.push({ a: null, h: h });
+  });
+  html += '<div class="toc-back"><a href="../index.html">← 返回课程中心</a></div>';
+  nav.innerHTML = html;
+  document.body.appendChild(nav);
+  var as = nav.querySelectorAll("a[href^='#']");
+  as.forEach(function (a, i) { links[i].a = a; });
+  function onScroll() {
+    var cur = 0;
+    links.forEach(function (l, i) {
+      if (l.h.getBoundingClientRect().top < 120) cur = i;
+    });
+    links.forEach(function (l, i) { l.a.classList.toggle("active", i === cur); });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 </body>
 </html>
