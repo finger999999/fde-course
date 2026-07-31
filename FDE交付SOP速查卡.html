@@ -144,9 +144,6 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 
 <style id="fde-wide-layout-patch">
 /* 宽屏排版补丁 v2：充分利用屏幕宽度 */
@@ -180,13 +177,17 @@
 <header id="title-block-header">
 <h1 class="title">FDE 交付 SOP 速查卡一页纸 现场随身</h1>
 </header>
-<h1 id="fde-交付-sop-速查卡一页纸-现场随身">FDE 交付 SOP 速查卡（一页纸 · 现场随身）</h1>
+<h1 id="fde-交付-sop-速查卡一页纸-现场随身">FDE 交付 SOP 速查卡（一页纸
+· 现场随身）</h1>
 <blockquote>
-<p>打印建议：A4 双面。正面 = 七阶段 SOP + HIL 判据；背面 = 反例清单 + 诚实边界。 蓝本：康养行业大模型及微康养生态运营平台（1 名 FDE + 智能体编队完成）。</p>
+<p>打印建议：A4 双面。正面 = 七阶段 SOP + HIL 判据；背面 = 反例清单 +
+诚实边界。 蓝本：康养行业大模型及微康养生态运营平台（1 名 FDE +
+智能体编队完成）。</p>
 </blockquote>
 <hr />
 <h2 id="正面">正面</h2>
-<h3 id="七阶段交付-sop认知侧全链条">① 七阶段交付 SOP（认知侧全链条）</h3>
+<h3 id="七阶段交付-sop认知侧全链条">① 七阶段交付
+SOP（认知侧全链条）</h3>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -228,7 +229,7 @@
 </tr>
 <tr class="even">
 <td><strong>4 设闸（HIL）</strong></td>
-<td>对每个 Action 判“是否插人”</td>
+<td>对每个 Action 判”是否插人”</td>
 <td>26 个 HIL 点，两大闸门</td>
 <td>见下方四判据</td>
 <td>涉钱/涉合规处有没有漏设？</td>
@@ -238,7 +239,7 @@
 <td>规则挂 citations，核到官方现行版本</td>
 <td>18 处挂国标；11 处占位不编造</td>
 <td>“错文号比空缺更有害”</td>
-<td>有没有把“看着像国标”当国标？</td>
+<td>有没有把”看着像国标”当国标？</td>
 </tr>
 <tr class="even">
 <td><strong>6 交付物工程</strong></td>
@@ -249,7 +250,7 @@
 </tr>
 <tr class="odd">
 <td><strong>7 收尾挂账</strong></td>
-<td>未决项显式挂 TODO，不靠“应该行”</td>
+<td>未决项显式挂 TODO，不靠”应该行”</td>
 <td>121 骨架 + 11 文号 + SDK 待确认</td>
 <td>每条 TODO 有落点、有谁补</td>
 <td>有没有把不确定往前硬推？</td>
@@ -257,9 +258,11 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>锚定口径先于并行</strong>：多智能体/多人协作前，先产出一份 <code>_WRITING_BRIEF.md</code>（术语表+核心数据表+主张+纪律）。这是一致性的唯一真相源，不是靠自觉。</p>
+<p><strong>锚定口径先于并行</strong>：多智能体/多人协作前，先产出一份
+<code>_WRITING_BRIEF.md</code>（术语表+核心数据表+主张+纪律）。这是一致性的唯一真相源，不是靠自觉。</p>
 </blockquote>
-<h3 id="hil-设点四判据满足任一-必须插人">② HIL 设点四判据（满足任一 → 必须插人）</h3>
+<h3 id="hil-设点四判据满足任一-必须插人">② HIL 设点四判据（满足任一 →
+必须插人）</h3>
 <pre><code>   ┌─ 不可逆？   （数据发布 / 状态迁移不可撤回）───┐
    ├─ 涉钱？     （增收决策 / 报销 / 分账 / 定价）──┤
    ├─ 涉合规？   （监管发布 / 补贴发放 / 授权）─────┼──► 是 → 设 HIL 闸
@@ -267,14 +270,26 @@
    └─ 置信度不足？（模型输出 &lt; 阈值，如 0.75）──────┘
                                                     └──► 否 → 可自动执行</code></pre>
 <ul>
-<li><strong>站长 HIL（增收闸）</strong>：AI 研判方案 → 站长拍板 → 转订单。置信度闸防橡皮图章（阈值占位 0.75，按错代价 = 错误增收决策）。</li>
-<li><strong>民政 DP-H（监管发布闸）</strong>：监管数据发布前人工闸（按错代价 = 违规发布、监管追责）。</li>
-<li><strong>口诀</strong>：<strong>AI 研判、人拍板、留痕可追溯。</strong> 高置信度不是免责，橡皮图章式的“人在环”等于没有环。</li>
+<li><strong>站长 HIL（增收闸）</strong>：AI 研判方案 → 站长拍板 →
+转订单。置信度闸防橡皮图章（阈值占位 0.75，按错代价 =
+错误增收决策）。</li>
+<li><strong>民政
+DP-H（监管发布闸）</strong>：监管数据发布前人工闸（按错代价 =
+违规发布、监管追责）。</li>
+<li><strong>口诀</strong>：<strong>AI
+研判、人拍板、留痕可追溯。</strong>
+高置信度不是免责，橡皮图章式的”人在环”等于没有环。</li>
 </ul>
 <hr />
 <h2 id="背面">背面</h2>
-<h3 id="十大真实反例康养项目踩坑-原则">③ 十大真实反例（康养项目踩坑 → 原则）</h3>
+<h3 id="十大真实反例康养项目踩坑-原则">③ 十大真实反例（康养项目踩坑 →
+原则）</h3>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>#</th>
@@ -285,7 +300,7 @@
 <tbody>
 <tr class="odd">
 <td>B-1</td>
-<td>图目标题写“22 张”，表体实际 26 行</td>
+<td>图目标题写”22 张”，表体实际 26 行</td>
 <td>摘要与明细单一真相源；并行产出必须收口回改</td>
 </tr>
 <tr class="even">
@@ -310,12 +325,12 @@
 </tr>
 <tr class="even">
 <td>B-6</td>
-<td>药食同源误标“GB”、星评用已废止 MZ/T</td>
+<td>药食同源误标”GB”、星评用已废止 MZ/T</td>
 <td>引标准核到官方现行版本</td>
 </tr>
 <tr class="odd">
 <td>B-7</td>
-<td>长者旅程做“夜间急救”过重，返工</td>
+<td>长者旅程做”夜间急救”过重，返工</td>
 <td>建模服务业务优先级，不求全</td>
 </tr>
 <tr class="even">
@@ -326,7 +341,7 @@
 <tr class="odd">
 <td>B-9</td>
 <td>SDK 能力（default/Evaluation）想当然</td>
-<td>不确定就显式挂账，不靠“应该支持吧”</td>
+<td>不确定就显式挂账，不靠”应该支持吧”</td>
 </tr>
 <tr class="even">
 <td>B-10</td>
@@ -337,12 +352,18 @@
 </table>
 <h3 id="诚实边界fde-的专业底线">④ 诚实边界（FDE 的专业底线）</h3>
 <ul>
-<li><strong>查不到 ≠ 编一个</strong>：地方文号、内部 SOP 编号无法核验时，留 <code>[本地待补文号]</code> / <code>[企业标准,FDE 补编号]</code>，锚定上位国标，转成向对应机关/部门逐项取件的清单。</li>
-<li><strong>智能体接不了的四件事</strong>（必须人扛）：<strong>客户关系 · 责任承担 · 价值判断 · 政治敏感度</strong>。这四项不是“暂时做不好”，是不该交出去。</li>
-<li><strong>一句话</strong>：FDE 的专业性，一半体现在敢说“我不知道，我去查/我去取”。</li>
+<li><strong>查不到 ≠ 编一个</strong>：地方文号、内部 SOP
+编号无法核验时，留 <code>[本地待补文号]</code> /
+<code>[企业标准,FDE 补编号]</code>，锚定上位国标，转成向对应机关/部门逐项取件的清单。</li>
+<li><strong>智能体接不了的四件事</strong>（必须人扛）：<strong>客户关系
+· 责任承担 · 价值判断 ·
+政治敏感度</strong>。这四项不是”暂时做不好”，是不该交出去。</li>
+<li><strong>一句话</strong>：FDE
+的专业性，一半体现在敢说”我不知道，我去查/我去取”。</li>
 </ul>
 <hr />
-<p><em>C-Life FDE 培训 · 配套速查卡 · 与《06 讲 · 康养项目全流程复盘》配合使用</em> </content></p>
+<p><em>C-Life FDE 培训 · 配套速查卡 · 与《06 讲 ·
+康养项目全流程复盘》配合使用</em> </content></p>
 
 <script>
 (function () {

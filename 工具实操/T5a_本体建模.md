@@ -8,6 +8,7 @@
 > ⭐ **T5a 与 T5b 是同一个 180′ 重心的上下半场**：**T5a 建结构**（对象/关系/规则/动作怎么立起来），**T5b 设闸与治理**（哪里必须停下来叫人、怎么验证闸没失效）。中间不要断开排课。
 
 ---
+
 ## 〇、开场第一句：这不是编译器
 
 学员看到 "compile" 会以为有个确定性编译器。**没有。**
@@ -21,6 +22,7 @@
 > 一个不敢留 NotImplementedError 的 FDE，会让模型把它猜的业务规则写成看起来能跑的代码——**那才是灾难。**
 
 ---
+
 ## 一、四个命令 + 一处最好的权限教学
 
 | 命令 | 干什么 | 强制人审 |
@@ -44,6 +46,7 @@
 > 它只能告诉你哪里不合格，**不能替你把不合格的地方抹平**。
 
 ---
+
 ## 二、输入：`domain-intake` 12 段契约
 
 模板：`studio-ontology/templates/domain-intake.md.tmpl`（T1 已经填过 60%，这里补完）
@@ -78,6 +81,7 @@
 - [ ] §10 至少 **1 查 + 1 做 + 1 该被拦**
 
 ---
+
 ## 三、七段 IR（`ontology-map.md`）
 
 > ⚠️ 命名陷阱：规范文件标题写的是「**五段式**中间表示」，正文却是 **0 号 Header + 七段**。**"五"指五要素，"七"指七段**，不是笔误。
@@ -119,6 +123,7 @@
 ① 每个 Object 有 primary_key、被写入的都已声明 ② Link 的 from/to 都已声明、edge_semantics 已判 ③ 每条 Rule 标了 severity+backing+evaluation ④ 每条 Rule 有 source ⑤ Action 的 guards/post_rules/writes 都存在 ⑥ **合规/对外凭证类 Action 都设了 hil** ⑦ CQ 至少覆盖一查一做一拦
 
 ---
+
 ## 四、declarative vs function：一句话判据
 
 > **判定所需的全部信息，是不是都在 `ctx.params` + `ctx.actor` 里？**
@@ -146,6 +151,7 @@ IR:    check = budget is None or budget >= 0
 学员写 `check` 时最容易写反——**记住：写"什么情况下是对的"，不是"什么情况下要拦"。**
 
 ---
+
 ## 五、编译产物：机器给你到哪一步
 
 `/studio-ontology:compile` 产出 4 个文件：
@@ -185,6 +191,7 @@ IR:    check = budget is None or budget >= 0
 **教学价值**：这张表本身就是"**别信文档，去看代码**"的活教材，也是 T5 收尾清单的由来。
 
 ---
+
 ## 六、两仓分工（讲清楚，否则学员会把数据写进插件）
 
 ```
@@ -198,6 +205,7 @@ studio/changes/{id}/ontology-map.md  →  plugins/{ontology_id}/     ← 本体�
 - **IR 文件不在运行时仓**，跨仓复制
 
 ---
+
 ## 七、⚠️ FDE 收尾清单（6 项，机器帮不了的部分）
 
 编译完成 ≠ 可用。**这 6 项必须人做**：
