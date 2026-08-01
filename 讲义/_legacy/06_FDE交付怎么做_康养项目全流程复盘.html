@@ -149,7 +149,50 @@
   <![endif]-->
 
 <style id="fde-wide-layout-patch">
-/* 宽屏排版补丁 v2：充分利用屏幕宽度 */
+/* ===== FDE 阅读优化样式 v3 ===== */
+html { font-size: 17px; }
+body {
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  max-width: 42em; line-height: 1.85; color: #24292f;
+  padding: 24px 20px 64px; letter-spacing: .01em;
+}
+#title-block-header { display: none; }  /* 与正文 h1 重复，隐藏（标签页标题保留） */
+p { margin: 1.1em 0; }
+ul, ol { padding-left: 1.6em; margin: 1em 0; }
+li { margin: .35em 0; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.4; color: #111827; scroll-margin-top: 16px; }
+h1 { font-size: 1.75em; margin: 0 0 .6em; padding-bottom: .4em; border-bottom: 2px solid #e5e7eb; }
+h2 {
+  font-size: 1.42em; margin: 2em 0 .9em; padding: .12em 0 .12em .6em;
+  border-left: 5px solid #2563eb; border-radius: 0 6px 6px 0;
+  background: linear-gradient(to right, #eff6ff, rgba(239,246,255,0));
+}
+h3 { font-size: 1.18em; margin: 1.6em 0 .7em; color: #1f2937; }
+h4 { font-size: 1.05em; margin: 1.4em 0 .6em; color: #374151; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+blockquote {
+  margin: 1.2em 0; padding: .7em 1.2em; color: #374151;
+  background: #f8fafc; border-left: 4px solid #93c5fd; border-radius: 0 8px 8px 0;
+}
+blockquote p { margin: .5em 0; }
+code {
+  font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  font-size: .87em; background: rgba(175,184,193,.25); padding: .1em .4em; border-radius: 4px;
+}
+pre {
+  background: #f6f8fa; border: 1px solid #e5e7eb; border-radius: 8px;
+  padding: 14px 16px; overflow-x: auto; line-height: 1.6; margin: 1.2em 0;
+}
+pre code { background: transparent; padding: 0; font-size: .92em; }
+table { border-collapse: collapse; width: 100% !important; margin: 1.4em 0; font-size: .94em; }
+th, td { border: 1px solid #d0d7de; padding: 8px 12px; vertical-align: top; }
+th { background: #f2f4f7; font-weight: 600; }
+tbody tr:nth-child(even) td { background: #fafbfc; }
+hr { border: none; border-top: 1px solid #e5e7eb; margin: 2.4em 0; }
+img { max-width: 100%; border-radius: 6px; }
+/* 左侧目录栏 */
 #fde-toc {
   display: none; position: fixed; left: 24px; top: 32px; width: 300px;
   max-height: calc(100vh - 64px); overflow: auto;
@@ -167,11 +210,11 @@
 #fde-toc .toc-h3 { margin-left: 24px; color: #6b7280; font-size: 13px; }
 #fde-toc .toc-back { margin-top: 10px; padding-top: 8px; border-top: 1px solid #e5e7eb; }
 @media (min-width: 1100px) {
-  html { font-size: 19px; }
-  body { max-width: 56em; padding-top: 32px; }
+  html { font-size: 18px; }
+  body { padding-top: 40px; }
 }
 @media (min-width: 1400px) {
-  body { margin-left: max(360px, calc(50% - 28em)); margin-right: auto; }
+  body { margin-left: max(360px, calc(50% - 21em)); margin-right: auto; }
   #fde-toc { display: block; }
 }
 </style>
@@ -686,8 +729,7 @@
 
 <script>
 (function () {
-  var heads = document.querySelectorAll("h1, h2[id], h3[id]");
-  heads = document.querySelectorAll("h1, h2, h3");
+  var heads = Array.prototype.filter.call(document.querySelectorAll("h1, h2, h3"), function (h) { return !h.closest("#title-block-header"); });
   if (heads.length < 3) return;
   var nav = document.createElement("nav");
   nav.id = "fde-toc";
